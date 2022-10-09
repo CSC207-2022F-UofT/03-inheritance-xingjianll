@@ -5,7 +5,6 @@
  * 1. Introduction to Java helpful.
  */
 
-import java.lang.constant.Constable;
 
 public abstract class Bag {
     /*
