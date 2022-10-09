@@ -5,6 +5,8 @@
  * 1. Introduction to Java helpful.
  */
 
+import java.lang.constant.Constable;
+
 public abstract class Bag {
     /*
      * TODO: Create the following private instance variables
@@ -13,8 +15,10 @@ public abstract class Bag {
      *       - an int named capacity
      *       - an array of Strings named contents
      */
-
-
+    private String color;
+    private int numberOfContents;
+    private int capacity;
+    private String[] contents;
 
 
     /*
@@ -26,9 +30,13 @@ public abstract class Bag {
      * be empty (e.g. numberOfContents is 0 and an empty String array for
      * its contents.)
      */
-
-
-
+    public Bag(String str, int cap)
+    {
+        color = str;
+        capacity = cap;
+        numberOfContents = 0;
+        contents = new String[capacity];
+    }
 
     /*
      * TODO: Create a variety of 'getter' functions.
@@ -37,7 +45,20 @@ public abstract class Bag {
      *           - getNumberOfContents
      *           - getCapacity
      */
+    public String getColor()
+    {
+        return color;
+    }
 
+    public int getNumberOfContents()
+    {
+        return numberOfContents;
+    }
+
+    public int getCapacity()
+    {
+        return capacity;
+    }
 
 
 
@@ -46,7 +67,10 @@ public abstract class Bag {
      *       color of this bag to the given color.
      */
 
-
+    public void setColor(String cr)
+    {
+        color = cr;
+    }
 
 
 
@@ -61,7 +85,18 @@ public abstract class Bag {
      *       and false otherwise.
      */
 
-
+    public boolean addItem(String item)
+    {
+        if (numberOfContents < capacity)
+        {
+            contents[numberOfContents] = item;
+            numberOfContents += 1;
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
 
 
 
@@ -75,7 +110,20 @@ public abstract class Bag {
      *
      * @return
      */
-
+    public String popItem()
+    {
+        if (numberOfContents == 0)
+        {
+            return null;
+        }
+        else
+        {
+            String toReturn = contents[numberOfContents - 1];
+            contents[numberOfContents - 1] = null;
+            numberOfContents = numberOfContents - 1;
+            return toReturn;
+        }
+    }
 
 
 
@@ -87,7 +135,11 @@ public abstract class Bag {
      */
     public void increaseCapacity(int n) {
         // TODO: Implement this method.
-
+        int oldcap = capacity;
+        capacity = capacity + n;
+        String[] list = new String[capacity];
+        System.arraycopy(contents, 0, list, 0, oldcap);
+        contents = list;
     }
 
     /**
